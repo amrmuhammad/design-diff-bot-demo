@@ -1,0 +1,17 @@
+name: Design Review
+
+on:
+  pull_request:
+    paths:
+      - '**.kicad_sch'
+      - '**.kicad_pcb'
+
+jobs:
+  erc-drc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: amrmuhammad/design-diff-bot@v0.1.1
+        with:
+          directory: .
+          fail-on-violations: 'false'
